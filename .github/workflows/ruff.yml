@@ -1,4 +1,5 @@
 name: Run Python Linting
+run-name: Run Python Linting
 
 on: [push, pull_request]
 

@@ -6,12 +6,13 @@ on:
     types:
       - completed
     branches:
-      - master
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
     
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
