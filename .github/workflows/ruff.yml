@@ -15,6 +15,7 @@ jobs:
         uses: isort/isort-action@v1
         with:
             path: "."
+            profile: "black"
 
   ruff:
     runs-on: ubuntu-latest
