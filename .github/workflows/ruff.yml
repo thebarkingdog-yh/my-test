@@ -1,9 +1,9 @@
-name: Run Python tests
+name: Run Python Lint
 
 on: [push]
 
 jobs:
-  build:
+  lint:
     name: Ruff Check
     runs-on: ubuntu-latest
 

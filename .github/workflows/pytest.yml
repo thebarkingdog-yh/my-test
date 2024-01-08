@@ -1,22 +1,40 @@
-name: Run Python tests
+name: Run Python Tests and Lint
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+
 
 jobs:
-  build:
-    name: Run tests
+  test:
+    name: Run Tests
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.10"]
-
+    
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
-      - name: Test with pytest
+
+      - name: Install Dependencies and Run Tests
         run: |
           pip install pytest pytest-cov requests
           pytest
+
+  lint:
+    name: Ruff Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Ruff Check
+        uses: jpetrucciani/ruff-check@main
+        with:
+          path: "."
+
