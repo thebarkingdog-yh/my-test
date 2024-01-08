@@ -1,9 +1,6 @@
-name: Run Ruff Check
+name: Run Python Linting
 
-on:
-  push:
-    branches:
-      - main
+on: [push, pull_request]
 
 jobs:
   isort:
@@ -11,10 +8,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Run isort lint
+      - name: Run isort check
         uses: isort/isort-action@v1
         with:
-            configuration: "--check-only --profile black"
+          configuration: "--check-only --profile black"
+  black:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run black check
+        uses: jpetrucciani/black-check@master
+        with:
+          path: "."
 
   ruff:
     runs-on: ubuntu-latest

@@ -2,9 +2,11 @@ name: Run Tests
 
 on:
   workflow_run:
-    workflows: ["Run Ruff Check"]
+    workflows: ["Run Python Linting"]
     types:
       - completed
+    branches:
+      - main
 
 jobs:
   test:
