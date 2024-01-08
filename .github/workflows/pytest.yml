@@ -7,9 +7,23 @@ on:
 
 
 jobs:
+  ruff:
+    name: Run Ruff Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Ruff Check
+        uses: jpetrucciani/ruff-check@main
+        with:
+          path: "."
+
   test:
     name: Run Tests
     runs-on: ubuntu-latest
+    needs: ruff
     
     steps:
       - name: Checkout Code
@@ -24,17 +38,3 @@ jobs:
         run: |
           pip install pytest pytest-cov requests
           pytest
-
-  lint:
-    name: Ruff Check
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Run Ruff Check
-        uses: jpetrucciani/ruff-check@main
-        with:
-          path: "."
-
