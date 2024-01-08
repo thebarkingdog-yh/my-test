@@ -1,14 +1,19 @@
-name: Run Python Lint
+name: Run Ruff Check
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  lint:
-    name: Ruff Check
+  ruff:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - uses: actions/checkout@v4
-      - uses: jpetrucciani/ruff-check@main
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Run Ruff Check
+        uses: jpetrucciani/ruff-check@main
         with:
           path: "."
