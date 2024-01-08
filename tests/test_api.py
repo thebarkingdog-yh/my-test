@@ -1,11 +1,6 @@
 import json
-from functools import (
-    WRAPPER_ASSIGNMENTS,
-    WRAPPER_UPDATES,
-    partial,
-    update_wrapper,
-    wraps,
-)
+from functools import (WRAPPER_ASSIGNMENTS, WRAPPER_UPDATES, partial,
+                       update_wrapper, wraps)
 
 import pytest
 import requests
