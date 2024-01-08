@@ -54,5 +54,5 @@ def test_chain_api():
             "temperature": 0
         }
     }
-    response = requests.post(api_url, data=orjson.dumps(data))
+    response = requests.post(api_url, data=json.dumps(data))
     assert response.status_code == 200
