@@ -1,9 +1,7 @@
 import json
-import time
 
 import pytest
 import requests
-
 
 
 def test_ex1():
