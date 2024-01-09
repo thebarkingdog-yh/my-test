@@ -11,8 +11,7 @@ jobs:
       - name: Run isort check
         uses: isort/isort-action@v1
         with:
-          configuration: "--check-only --diff --profile black"
-
+          configuration: "--check-only --diff --profile black --thirdparty pytest"
 
   black:
     runs-on: ubuntu-latest
