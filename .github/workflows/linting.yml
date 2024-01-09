@@ -7,27 +7,38 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: isort/isort-action@v1
-        with:
-          requirements-files: "requirements.txt"
-          configuration: "--check-only --diff --profile black --thirdparty pytest"
 
-  black:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+      - name: Run isort check
+        uses: isort/isort-action@v1
+        with:
+          configuration: "--check-only --diff --profile black --thirdparty pytest"
 
       - name: Run black check
         uses: jpetrucciani/black-check@master
         with:
           path: "."
 
-  ruff:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
       - name: Run ruff check
         uses: jpetrucciani/ruff-check@main
         with:
           path: "."
+
+#  black:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v4
+#
+#      - name: Run black check
+#        uses: jpetrucciani/black-check@master
+#        with:
+#          path: "."
+
+#  ruff:
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/checkout@v4
+#
+#      - name: Run ruff check
+#        uses: jpetrucciani/ruff-check@main
+#        with:
+#          path: "."
