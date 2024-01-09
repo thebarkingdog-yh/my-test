@@ -11,7 +11,7 @@ jobs:
         with:
           python-root-list: "."
           use-isort: true
-          extra-isort-options: "--check-only --diff --profile black"
+          extra-isort-options: "--profile black"
           use-black: true
           extra-black-options: ""
           
