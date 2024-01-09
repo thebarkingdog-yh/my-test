@@ -13,32 +13,23 @@ jobs:
         with:
           configuration: "--check-only --diff --profile black --thirdparty pytest"
 
+
+  black:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
       - name: Run black check
         uses: jpetrucciani/black-check@master
         with:
           path: "."
 
+  ruff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
       - name: Run ruff check
         uses: jpetrucciani/ruff-check@main
         with:
           path: "."
-
-#  black:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v4
-#
-#      - name: Run black check
-#        uses: jpetrucciani/black-check@master
-#        with:
-#          path: "."
-
-#  ruff:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - uses: actions/checkout@v4
-#
-#      - name: Run ruff check
-#        uses: jpetrucciani/ruff-check@main
-#        with:
-#          path: "."
