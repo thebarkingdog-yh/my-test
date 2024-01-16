@@ -44,17 +44,17 @@ jobs:
       - name: Install Dependencies and Run Tests
         run: |
           pip install pytest pytest-cov requests
-          pytest --junitxml=pytest.xml --cov-report=xml:pytest-coverage.xml --cov tests/ | tee pytest-coverage.txt
+          pytest --junitxml=pytest.xml --cov-report=xml:pytest-coverage.xml --cov tests/
 
       - name: Pytest coverage comment
         id: coverageComment
         uses: MishaKav/pytest-coverage-comment@main
         with:
           create-new-comment: true
-          pytest-coverage-path: ./pytest-coverage.txt
-          pytest-xml-coverage-path: ./pytest-coverage.xml
-          title: "pytest 測試報告 1"
-          badge-title: "pytest coverage"
+          badge-title: "pytest"
           junitxml-path: ./pytest.xml
-          junitxml-title: My JUnit Xml Summary Title
+          junitxml-title: "pytest 總結"
+          pytest-xml-coverage-path: ./pytest-coverage.xml
+          title: "pytest 測試覆蓋率 (點擊打開)"
+
 
