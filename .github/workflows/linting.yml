@@ -32,7 +32,7 @@ jobs:
     needs: [isort, black, ruff]
     runs-on: ubuntu-latest
 
-    if: github.ref == 'refs/heads/sub'
+    # if: github.ref == 'refs/heads/sub'
     steps:
       - uses: actions/checkout@v4
 
@@ -51,7 +51,7 @@ jobs:
         uses: MishaKav/pytest-coverage-comment@main
         with:
           pytest-xml-coverage-path: ./pytest-coverage.xml
-          title: "pytest 測試報告"
+          title: "pytest 測試報告 1"
           badge-title: "pytest coverage"
           junitxml-path: ./pytest-coverage.xml
           junitxml-title: My JUnit Xml Summary Title
