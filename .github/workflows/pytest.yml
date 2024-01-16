@@ -14,8 +14,7 @@ jobs:
 
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -25,4 +24,15 @@ jobs:
       - name: Install Dependencies and Run Tests
         run: |
           pip install pytest pytest-cov requests
-          pytest
+          pytest --junitxml=pytest.xml --cov-report=xml:pytest-coverage.xml --cov tests/
+
+      - name: Pytest coverage comment
+        id: coverageComment
+        uses: MishaKav/pytest-coverage-comment@main
+        with:
+          create-new-comment: true
+          badge-title: "pytest"
+          junitxml-path: ./pytest.xml
+          junitxml-title: "pytest 總結"
+          pytest-xml-coverage-path: ./pytest-coverage.xml
+          title: "pytest 測試覆蓋率 (點擊打開)"
