@@ -44,7 +44,7 @@ jobs:
       - name: Install Dependencies and Run Tests
         run: |
           pip install pytest pytest-cov requests
-          pytest --junitxml=pytest.xml --cov-report=xml:pytest-coverage.xml --cov tests/ | tee pytest-coverage.txt
+          pytest --cov-report "xml:pytest-coverage.xml" --cov tests/
 
       - name: Pytest coverage comment
         id: coverageComment
