@@ -9,7 +9,7 @@ def test_ex1():
 
 
 def test_ex2():
-    assert 1 == 2
+    assert 1 == 5
 
 
 def test_ex3():
