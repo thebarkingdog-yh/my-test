@@ -25,6 +25,6 @@ jobs:
           verbose: true
           emoji: true
           job-summary: true
-          custom-arguments: '--junitxml=pytest.xml --cov-report "xml:pytest-coverage.xml" --cov tests/'
+          custom-arguments: '.'
           click-to-expand: true
           report-title: 'Test Report'
