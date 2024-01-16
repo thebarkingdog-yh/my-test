@@ -32,7 +32,7 @@ jobs:
     needs: [isort, black, ruff]
     runs-on: ubuntu-latest
 
-    # if: github.ref == 'refs/heads/sub'
+    if: github.ref == 'refs/heads/sub'
     steps:
       - uses: actions/checkout@v4
 
@@ -44,7 +44,7 @@ jobs:
       - name: Install Dependencies and Run Tests
         run: |
           pip install pytest pytest-cov requests
-          pytest --cov-report "xml:pytest-coverage.xml" --cov tests/
+          pytest --junitxml=pytest.xml --cov-report=xml:pytest-coverage.xml --cov tests/
 
       - name: Pytest coverage comment
         id: coverageComment
