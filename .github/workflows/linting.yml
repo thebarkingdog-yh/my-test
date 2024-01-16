@@ -50,6 +50,7 @@ jobs:
         id: coverageComment
         uses: MishaKav/pytest-coverage-comment@main
         with:
+          create-new-comment: true
           pytest-coverage-path: ./pytest-coverage.txt
           pytest-xml-coverage-path: ./pytest-coverage.xml
           title: "pytest 測試報告 1"
