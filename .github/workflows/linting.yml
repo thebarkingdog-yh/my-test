@@ -10,7 +10,7 @@ jobs:
 
       - uses: isort/isort-action@v1
         with:
-          configuration: --profile black
+          configuration: --check-only --diff --profile black
 
   black:
     runs-on: ubuntu-latest
