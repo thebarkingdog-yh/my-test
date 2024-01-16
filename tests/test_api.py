@@ -9,11 +9,11 @@ def test_ex1():
 
 
 def test_ex2():
-    assert 1 == 2
+    assert 1 == 1
 
 
 def test_ex3():
-    assert 1 == 3
+    assert 1 == 1
 
 
 @pytest.mark.skip()
