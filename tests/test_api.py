@@ -1,8 +1,7 @@
 import json
 
-import pytest
 import requests
-
+import pytest
 
 def test_ex1():
     assert 1 == 1
