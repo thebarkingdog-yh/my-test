@@ -32,7 +32,7 @@ jobs:
     needs: [isort, black, ruff]
     runs-on: ubuntu-latest
 
-    if: github.ref == 'refs/heads/sub'
+    # if: github.ref == 'refs/heads/sub'
     steps:
       - uses: actions/checkout@v4
 
