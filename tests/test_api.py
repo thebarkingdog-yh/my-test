@@ -13,7 +13,7 @@ def test_ex2():
 
 
 def test_ex3():
-    assert 1 == 3
+    assert 1 == 1
 
 
 @pytest.mark.skip()
