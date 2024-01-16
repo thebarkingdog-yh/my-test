@@ -44,7 +44,7 @@ jobs:
       - name: Install Dependencies and Run Tests
         run: |
           pip install pytest pytest-cov requests
-          pytest --junitxml=coverage.xml --cov-report=term-missing:skip-covered --cov tests/ | tee pytest-coverage.txt
+          pytest --junitxml=coverage.xml --cov-report=xml:coverage.xml --cov tests/ | tee pytest-coverage.txt
 
       - name: Pytest coverage comment
         id: coverageComment
@@ -56,11 +56,11 @@ jobs:
           badge-title: My Badge Coverage Title
           hide-badge: false
           hide-report: false
-          create-new-comment: false
+          create-new-comment: true
           hide-comment: false
           report-only-changed-files: false
           remove-link-from-badge: false
-          unique-id-for-comment: python3.8
-          junitxml-path: ./pytest.xml
+          unique-id-for-comment: python3.10
+          junitxml-path: ./coverage.xml
           junitxml-title: My JUnit Xml Summary Title
 
