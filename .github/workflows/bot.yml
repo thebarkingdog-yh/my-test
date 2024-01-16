@@ -19,16 +19,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest pytest-cov requests
 
-      - name: Build coverage file
-        run: |
-          pytest --junitxml=pytest.xml --cov-report "xml:pytest-coverage.xml" --cov tests/ --continue-on-collection-errors
-
-      - name: Pytest coverage comment
-        uses: MishaKav/pytest-coverage-comment@main
+      - name: Run pytest
+        uses: pavelzw/pytest-action@v2
         with:
-          create-new-comment: true
-          badge-title: "pytest"
-          junitxml-path: ./pytest.xml
-          junitxml-title: "pytest 總結"
-          pytest-xml-coverage-path: ./pytest-coverage.xml
-          title: "pytest 測試覆蓋率 (點擊打開)"
+          verbose: true
+          emoji: true
+          job-summary: true
+          custom-arguments: '-q'
+          click-to-expand: true
+          report-title: 'Test Report'
