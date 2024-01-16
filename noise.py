@@ -66,6 +66,7 @@ async def reader(channel: redis.client.PubSub):
                 # stream.write(data)
                 ...
 
+
 async def main():
     async with r.pubsub() as pubsub:
         await pubsub.subscribe(AUDIO_IN_CHANNEL, AUDIO_OUT_CHANNEL)
