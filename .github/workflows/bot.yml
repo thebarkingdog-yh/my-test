@@ -25,6 +25,6 @@ jobs:
           verbose: true
           emoji: true
           job-summary: true
-          custom-arguments: '.'
+          # custom-arguments: '.'
           click-to-expand: true
           report-title: 'Test Report'
