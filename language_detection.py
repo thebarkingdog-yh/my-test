@@ -1,3 +1,5 @@
+import time
+
 import langid
 
 L = ["Geeksforgeeks is a computer science portal for geeks",
@@ -12,15 +14,20 @@ for i in L:
     print(langid.classify(i))
 
 # %%
-from lingua import LanguageDetectorBuilder
+from lingua import Language, LanguageDetectorBuilder
 
-detector = LanguageDetectorBuilder.from_all_languages().build()
+# detector = LanguageDetectorBuilder.from_all_languages().build()
+languages = [Language.CHINESE, Language.ENGLISH, Language.JAPANESE, Language.KOREAN,
+             Language.FRENCH, Language.SPANISH, Language.ARABIC, Language.CATALAN]
+detector = LanguageDetectorBuilder.from_languages(*languages).build()
 output = detector.detect_language_of("today 去 where")
+outputs = detector.detect_languages_in_parallel_of(["today 去 where", ""])
 print(output.iso_code_639_1.name.lower())
+print(outputs)
 # %%
 from pprint import pprint
 
-languages = detector.compute_language_confidence("languages are awesome")
+languages = detector.compute_language_confidence_values("languages are awesome")
 lang = [(lang.language.iso_code_639_1.name.lower(), f"{lang.value:.4f}") for lang in
         languages if lang.value > 0.01]
 pprint(lang)
@@ -35,3 +42,15 @@ franc.lang_detect('Alle menneske er fødde til fridom')[0][0]  # 'nno'
 franc.lang_detect('')[0][0]  # 'und'
 
 franc.lang_detect('哈囉你好', minlength=3)[0][0]  # 'sco'
+
+# %%
+from enum import Enum
+
+
+class Xyz(str, Enum):
+    x = "a"
+    y = "b"
+    z = ""
+
+
+Xyz.z.value
