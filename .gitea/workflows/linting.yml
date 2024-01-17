@@ -54,11 +54,16 @@ jobs:
         run: pip install pytest pytest-md pytest-emoji pytest-cov requests
 
       - name: Run pytest and Export pytest report
-        id: run-pytest
-        uses: pavelzw/pytest-action@v2
+        uses: dariocurr/pytest-summary@main
         with:
-          click-to-expand: false
-          report-title: '測試報告'
+          output: test-summary.md
+          show: "all"
+#      - name: Run pytest and Export pytest report
+#        id: run-pytest
+#        uses: pavelzw/pytest-action@v2
+#        with:
+#          click-to-expand: false
+#          report-title: '測試報告'
 
       - name: Pytest coverage comment
         if: failure() && steps.run-pytest.outcome == 'failure'
