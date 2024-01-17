@@ -69,7 +69,7 @@ jobs:
         with:
           create-new-comment: true
           badge-title: "pytest"
-          junitxml-path: ./123.md
+          junitxml-path: ./pytest.xml
           junitxml-title: "pytest 總結"
           pytest-xml-coverage-path: ./pytest-coverage.xml
           title: "pytest 測試覆蓋率 (點擊打開)"
