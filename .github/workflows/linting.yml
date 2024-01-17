@@ -39,8 +39,6 @@ jobs:
   test:
     # needs: lint
     runs-on: ubuntu-latest
-    container:
-      image: catthehacker/ubuntu:act-latest
     steps:
       - name: Checkout file
         uses: actions/checkout@v4
@@ -78,7 +76,7 @@ jobs:
         if: failure() && steps.run-pytest.outcome == 'failure'
         uses: peter-evans/create-or-update-comment@v3
         with:
-          issue-number:  ${{ github.event.number }}
+          comment-id:  ${{ github.event.number }}
           body-path: ./123.md
           reactions: '+1'
 
