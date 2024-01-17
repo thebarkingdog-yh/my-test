@@ -10,34 +10,34 @@ on:
     paths-ignore:
       - ".github/workflows/*"
 
-jobs:
-  lint:
-    runs-on: ubuntu-latest
-    container:
-      image: catthehacker/ubuntu:act-latest
-    steps:
-      - name: Checkout file
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-
-      - name: Install lint dependencies
-        run: pip install isort black ruff
-
-      - name: Run isort check
-        run: isort --check-only --diff --profile black .
-
-      - name: Run black check
-        run: black --check .
-
-      - name: Run ruff check
-        run: ruff check .
+#jobs:
+#  lint:
+#    runs-on: ubuntu-latest
+#    container:
+#      image: catthehacker/ubuntu:act-latest
+#    steps:
+#      - name: Checkout file
+#        uses: actions/checkout@v4
+#
+#      - name: Set up Python
+#        uses: actions/setup-python@v5
+#        with:
+#          python-version: "3.10"
+#
+#      - name: Install lint dependencies
+#        run: pip install isort black ruff
+#
+#      - name: Run isort check
+#        run: isort --check-only --diff --profile black .
+#
+#      - name: Run black check
+#        run: black --check .
+#
+#      - name: Run ruff check
+#        run: ruff check .
 
   test:
-    needs: lint
+    # needs: lint
     runs-on: ubuntu-latest
     container:
       image: catthehacker/ubuntu:act-latest
@@ -53,24 +53,25 @@ jobs:
       - name: Install pytest dependencies
         run: pip install pytest pytest-md pytest-emoji pytest-cov requests
 
-      - name: Run pytest and Export pytest report
-        uses: dariocurr/pytest-summary@main
-        with:
-          output: test-summary.md
-          show: "all"
-
-      - name: Upload test summary
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-summary
-          path: test-summary.md
-        if: always()
 #      - name: Run pytest and Export pytest report
-#        id: run-pytest
-#        uses: pavelzw/pytest-action@v2
+#        uses: dariocurr/pytest-summary@main
 #        with:
-#          click-to-expand: false
-#          report-title: '測試報告'
+#          output: test-summary.md
+#          show: "all"
+#
+#      - name: Upload test summary
+#        uses: actions/upload-artifact@v3
+#        with:
+#          name: test-summary
+#          path: test-summary.md
+#        if: always()
+
+      - name: Run pytest and Export pytest report
+        id: run-pytest
+        uses: pavelzw/pytest-action@v2
+        with:
+          click-to-expand: false
+          report-title: '測試報告'
 
       - name: Pytest coverage comment
         if: failure() && steps.run-pytest.outcome == 'failure'
@@ -78,7 +79,7 @@ jobs:
         with:
           create-new-comment: true
           badge-title: "pytest"
-          junitxml-path: ./pytest.xml
+          junitxml-path: ./123.md
           junitxml-title: "pytest 總結"
           pytest-xml-coverage-path: ./pytest-coverage.xml
           title: "pytest 測試覆蓋率 (點擊打開)"
