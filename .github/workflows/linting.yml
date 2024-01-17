@@ -17,14 +17,11 @@ jobs:
       - name: Checkout file
         uses: actions/checkout@v4
 
-      - name: Install poetry
-        run: pipx install poetry
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
-          cache: "poetry"
+          cache: "pip"
 
 #      - name: Cache dependencies
 #        id: cache
@@ -36,16 +33,16 @@ jobs:
 #            ${{ runner.os }}-pip-
 
       - name: Install lint dependencies
-        run: poetry install
+        run: pip install -r requirements_lint.txt
 
       - name: Run isort check
-        run: poetry run isort --check-only --diff --profile black .
+        run: isort --check-only --diff --profile black .
 
       - name: Run black check
-        run: poetry run black --check .
+        run: black --check .
 
       - name: Run ruff check
-        run: poetry run ruff check .
+        run: ruff check .
 
   test:
     needs: lint
