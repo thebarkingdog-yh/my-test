@@ -76,7 +76,7 @@ jobs:
         if: failure() && steps.run-pytest.outcome == 'failure'
         uses: peter-evans/create-or-update-comment@v3
         with:
-          comment-id: ${{ github.event.comment.id }}
+          issue-number: 7
           body-path: ./123.md
           reactions: '+1'
 
