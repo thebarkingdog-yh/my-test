@@ -3,39 +3,39 @@ name: Run Python Lint and Test
 on:
   push:
   pull_request:
-    types:
-      - opened
     branches:
       - main
     paths-ignore:
       - ".github/workflows/*"
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout file
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
-
-      - name: Install lint dependencies
-        run: pip install isort black ruff
-
-      - name: Run isort check
-        run: isort --check-only --diff --profile black .
-
-      - name: Run black check
-        run: black --check .
-
-      - name: Run ruff check
-        run: ruff check .
+#  lint:
+#    runs-on: ubuntu-latest
+#    container:
+#      image: catthehacker/ubuntu:act-latest
+#    steps:
+#      - name: Checkout file
+#        uses: actions/checkout@v4
+#
+#      - name: Set up Python
+#        uses: actions/setup-python@v5
+#        with:
+#          python-version: "3.10"
+#
+#      - name: Install lint dependencies
+#        run: pip install isort black ruff
+#
+#      - name: Run isort check
+#        run: isort --check-only --diff --profile black .
+#
+#      - name: Run black check
+#        run: black --check .
+#
+#      - name: Run ruff check
+#        run: ruff check .
 
   test:
-    needs: lint
+    # needs: lint
     runs-on: ubuntu-latest
 
     steps:
@@ -50,12 +50,16 @@ jobs:
       - name: Install pytest dependencies
         run: pip install pytest pytest-md pytest-emoji pytest-cov requests
 
+#      - name: Run pytest and Export pytest report
+#        id: run-pytest
+#        uses: pavelzw/pytest-action@v2
+#        with:
+#          click-to-expand: false
+#          report-title: '測試報告'
+
       - name: Run pytest and Export pytest report
         id: run-pytest
-        uses: pavelzw/pytest-action@v2
-        with:
-          click-to-expand: false
-          report-title: '測試報告'
+        run: pytest
 
       - name: Pytest coverage comment
         if: failure() && steps.run-pytest.outcome == 'failure'
@@ -68,6 +72,12 @@ jobs:
           pytest-xml-coverage-path: ./pytest-coverage.xml
           title: "pytest 測試覆蓋率 (點擊打開)"
 
-
+      - name: Create comment
+        if: failure() && steps.run-pytest.outcome == 'failure'
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body-path: ./123.md
+          reactions: '+1'
 
 

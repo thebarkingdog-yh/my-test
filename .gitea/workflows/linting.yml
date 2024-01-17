@@ -54,18 +54,11 @@ jobs:
         run: pip install pytest pytest-md pytest-emoji pytest-cov requests
 
 #      - name: Run pytest and Export pytest report
-#        uses: dariocurr/pytest-summary@main
+#        id: run-pytest
+#        uses: pavelzw/pytest-action@v2
 #        with:
-#          output: test-summary.md
-#          show: "all"
-#
-#      - name: Upload test summary
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: test-summary
-#          path: test-summary.md
-#        if: always()
-
+#          click-to-expand: false
+#          report-title: '測試報告'
       - name: Run pytest and Export pytest report
         id: run-pytest
         uses: pavelzw/pytest-action@v2
@@ -83,11 +76,17 @@ jobs:
         with:
           create-new-comment: true
           badge-title: "pytest"
-          junitxml-path: ./123.md
+          junitxml-path: ./pytest.xml
           junitxml-title: "pytest 總結"
           pytest-xml-coverage-path: ./pytest-coverage.xml
           title: "pytest 測試覆蓋率 (點擊打開)"
 
-
+      - name: Comment on PR with file content
+        if: always()
+        run: |
+          file_content=$(cat ./123.md)
+          gh pr comment ${{ github.event.number }} --body "File Content: $file_content"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
