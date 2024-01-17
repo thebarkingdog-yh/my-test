@@ -42,7 +42,7 @@ jobs:
 
     steps:
       - name: print number
-        run: echo "${{ github.event.number }}"
+        run: echo "::set-env name=PR_NUMBER::$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")"
       - name: Checkout file
         uses: actions/checkout@v4
 
