@@ -10,7 +10,7 @@ on:
     paths-ignore:
       - ".github/workflows/*"
 
-#jobs:
+jobs:
 #  lint:
 #    runs-on: ubuntu-latest
 #    container:
