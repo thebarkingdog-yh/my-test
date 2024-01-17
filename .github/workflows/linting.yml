@@ -42,7 +42,7 @@ jobs:
 
     steps:
       - name: print number
-        run: echo "${{ github.event.pull_request.number }}"
+        run: echo "${{ github.event.number }}"
       - name: Checkout file
         uses: actions/checkout@v4
 
