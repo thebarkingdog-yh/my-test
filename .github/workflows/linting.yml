@@ -29,7 +29,7 @@ jobs:
         run: pip install -r requirements_lint.txt
 
       - name: Run isort check
-        run: isort --check-only --diff --profile black .
+        run: python3 -m isort --check-only --diff --profile black .
 
       - name: Run black check
         run: black --check .
