@@ -74,13 +74,11 @@ jobs:
           pytest-xml-coverage-path: ./pytest-coverage.xml
           title: "pytest 測試覆蓋率 (點擊打開)"
 
-      - name: Comment on PR with file content
-        if: always()
-        run: |
-          file_content=$(cat ./123.md)
-          apt install pr -y
-          gh pr comment ${{ github.event.number }} --body "File Content: $file_content"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          issue-number:  ${{ github.event.number }}
+          body-path: ./123.md
+          reactions: '+1'
 
 
