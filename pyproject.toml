@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "my-test"
+version = "0.1.0"
+description = "測試套件"
+authors = ["sushi <yihsiang@barkingdog.ai>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.lint.dependencies]
+isort = "^5.13.2"
+black = "^23.12.1"
+ruff = "^0.1.13"
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.4"
+pytest-md = "^0.2.0"
+pytest-emoji = "^0.2.0"
+pytest-cov = "^4.1.0"
+requests = "^2.31.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

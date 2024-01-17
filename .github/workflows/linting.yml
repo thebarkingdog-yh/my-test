@@ -1,51 +1,54 @@
-name: Run Python Linting
+name: Run Python Lint and Test
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - main
+    paths-ignore:
+      - ".github/workflows/*"
 
 jobs:
-  isort:
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout file
+        uses: actions/checkout@v4
 
-      - uses: isort/isort-action@v1
+      - name: Run isort check
+        uses: isort/isort-action@v1
         with:
           configuration: --check-only --diff --profile black
 
-  black:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
       - name: Run black check
         uses: jpetrucciani/black-check@master
-
-  ruff:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
       - name: Run ruff check
         uses: jpetrucciani/ruff-check@main
 
   test:
-    needs: [isort, black, ruff]
+    needs: lint
     runs-on: ubuntu-latest
 
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout file
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
 
-      - name: Install Dependencies
+      - name: Install pytest dependencies
         run: |
           pip install pytest pytest-md pytest-emoji pytest-cov requests
 
       - name: Run pytest
+        run: pytest
+
+      - name: Export pytest report
         uses: pavelzw/pytest-action@v2
         with:
           click-to-expand: false
