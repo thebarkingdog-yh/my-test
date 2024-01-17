@@ -43,7 +43,7 @@ jobs:
       PR_NUMBER: ${{ github.event.number }}
     steps:
       - name: print number
-        run: echo "$PR_NUMBER"
+        run: echo "${{ env.PR_NUMBER }}"
       - name: Checkout file
         uses: actions/checkout@v4
 
