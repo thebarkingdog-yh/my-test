@@ -40,7 +40,7 @@ jobs:
 
     steps:
       - name: print number
-        run: echo "${{ github.event.issue.number }}"
+        run: echo "${{ github.event.pull_request.number }}"
       - name: Checkout file
         uses: actions/checkout@v4
 
@@ -77,7 +77,7 @@ jobs:
         if: failure() && steps.run-pytest.outcome == 'failure'
         uses: peter-evans/create-or-update-comment@v3
         with:
-          issue-number: 8
+          issue-number: ${{ github.event.pull_request.number }}
           body-path: ./123.md
           reactions: '+1'
 
