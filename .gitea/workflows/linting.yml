@@ -53,12 +53,15 @@ jobs:
       - name: Install pytest dependencies
         run: pip install pytest pytest-md pytest-emoji pytest-cov requests
 
+#      - name: Run pytest and Export pytest report
+#        id: run-pytest
+#        uses: pavelzw/pytest-action@v2
+#        with:
+#          click-to-expand: false
+#          report-title: '測試報告'
       - name: Run pytest and Export pytest report
         id: run-pytest
-        uses: pavelzw/pytest-action@v2
-        with:
-          click-to-expand: false
-          report-title: '測試報告'
+        run: pytest
 
       - name: Pytest coverage comment
         if: failure() && steps.run-pytest.outcome == 'failure'
@@ -71,6 +74,12 @@ jobs:
           pytest-xml-coverage-path: ./pytest-coverage.xml
           title: "pytest 測試覆蓋率 (點擊打開)"
 
-
+      - name: Comment on PR with file content
+        if: always()
+        run: |
+          file_content=$(cat ./123.md)
+          gh pr comment ${{ github.event.number }} --body "File Content: $file_content"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
