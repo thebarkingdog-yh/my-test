@@ -40,7 +40,8 @@ jobs:
     # needs: lint
     runs-on: ubuntu-latest
     steps:
-      - run: echo "${{github.event.number}}"
+      - name: print number
+        run: echo "${{github.event.number}}"
       - name: Checkout file
         uses: actions/checkout@v4
 
