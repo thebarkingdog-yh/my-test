@@ -21,10 +21,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
-          # cache: "pip"
 
       - name: Install lint dependencies
-        run: pip install -r requirements_lint.txt
+        run: pip install isort black ruff
 
       - name: Run isort check
         run: isort --check-only --diff --profile black .
@@ -47,10 +46,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
-          # cache: "pip"
 
       - name: Install pytest dependencies
-        run: pip install -r requirements_test.txt
+        run: pip install pytest pytest-md pytest-emoji pytest-cov requests
 
       - name: Run pytest and Export pytest report
         uses: pavelzw/pytest-action@v2
