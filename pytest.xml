@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="3" time="1.325" timestamp="2024-01-17T18:05:46.184503" hostname="thebarkingdog-gbaian10"><testcase classname="tests.test_api" name="test_ex1" time="0.044" /><testcase classname="tests.test_api" name="test_ex2" time="0.001"><failure message="assert 1 == 3">def test_ex2():
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="3" time="1.389" timestamp="2024-01-17T18:40:41.234957" hostname="thebarkingdog-gbaian10"><testcase classname="tests.test_api" name="test_ex1" time="0.058" /><testcase classname="tests.test_api" name="test_ex2" time="0.001"><failure message="assert 1 == 3">def test_ex2():
 &gt;       assert 1 == 3
 E       assert 1 == 3
 
