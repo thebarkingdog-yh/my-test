@@ -27,6 +27,11 @@ jobs:
       - name: Install lint dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: pip install -r requirements_lint.txt
+      
+      - name: isort test
+        run: | 
+          python3
+          import isort
 
       - name: Run isort check
         run: python3 -m isort --check-only --diff --profile black .
