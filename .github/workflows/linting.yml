@@ -39,8 +39,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: print number
-        run: echo "${{ github.event.pull_request.number }}"
       - name: Checkout file
         uses: actions/checkout@v4
 
@@ -58,6 +56,7 @@ jobs:
 #        with:
 #          click-to-expand: false
 #          report-title: '測試報告'
+
       - name: Run pytest and Export pytest report
         id: run-pytest
         run: pytest
