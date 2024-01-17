@@ -7,8 +7,8 @@ on:
       - opened
     branches:
       - main
-    paths-ignore:
-      - ".github/workflows/*"
+#    paths-ignore:
+#      - ".github/workflows/*"
 
 #jobs:
 #  lint:
