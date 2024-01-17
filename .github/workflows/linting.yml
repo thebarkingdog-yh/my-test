@@ -75,6 +75,7 @@ jobs:
           title: "pytest 測試覆蓋率 (點擊打開)"
 
       - name: Create comment
+        if: failure() && steps.run-pytest.outcome == 'failure'
         uses: peter-evans/create-or-update-comment@v3
         with:
           issue-number:  ${{ github.event.number }}
