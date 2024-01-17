@@ -66,12 +66,15 @@ jobs:
 #          path: test-summary.md
 #        if: always()
 
+#      - name: Run pytest and Export pytest report
+#        id: run-pytest
+#        uses: pavelzw/pytest-action@v2
+#        with:
+#          click-to-expand: false
+#          report-title: '測試報告'
       - name: Run pytest and Export pytest report
         id: run-pytest
-        uses: pavelzw/pytest-action@v2
-        with:
-          click-to-expand: false
-          report-title: '測試報告'
+        run: pytest
 
       - name: Pytest coverage comment
         if: failure() && steps.run-pytest.outcome == 'failure'
