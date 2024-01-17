@@ -42,7 +42,7 @@ jobs:
 
     steps:
       - name: print number
-        run: echo "::set-env name=PR_NUMBER::$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")"
+        run: echo "${{ github.event.issue.number }}"
       - name: Checkout file
         uses: actions/checkout@v4
 
@@ -79,7 +79,7 @@ jobs:
         if: failure() && steps.run-pytest.outcome == 'failure'
         uses: peter-evans/create-or-update-comment@v3
         with:
-          issue-number: ${{github.event.number}}
+          issue-number: 8
           body-path: ./123.md
           reactions: '+1'
 
