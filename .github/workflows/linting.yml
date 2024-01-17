@@ -39,11 +39,10 @@ jobs:
   test:
     # needs: lint
     runs-on: ubuntu-latest
-    env:
-      PR_NUMBER: ${{ github.event.number }}
+
     steps:
       - name: print number
-        run: echo "${{ env.PR_NUMBER }}"
+        run: echo "${{ github.event.pull_request.number }}"
       - name: Checkout file
         uses: actions/checkout@v4
 
